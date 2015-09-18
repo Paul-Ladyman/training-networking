@@ -1,0 +1,82 @@
+Network Fundamentals
+====================
+
+Rather than using bespoke bits of kit for moving audio and video signals we could
+send them as packets over an IP network. The BBC hasn't quite bought into this whole sale yet
+but that's the direction the industry is going in.
+
+IP for audio and video is quite a new standard, in fact the first version of the standard is only
+a year or so old.
+
+Network Types
+------------
+
+Personal Area Network
+Local Area Network - usually uses ethernet or wifi
+Wide Area Network - links controlled by telecom companies
+Storage Area Network
+
+There are alternatives to ethernet but they've faded away. Ethernet is cheap and fast.
+
+Network Layers
+--------------
+
+Networks provide discrete functions described by the OSI Seven Layer Model. Networks have three main
+functions:
+
+* Hardware - usually ethernet/wifi. Also find Fibre connections.
+* Protocol software - IP most popular. IP works end-to-end source to destination. Each machine as an IP address. IPv4 is the current standard. IPv6 has been kicking around for 20 years but we don't use commonly yet. This may be because the UK got assigned a disproportional amount of IPv4 addresses so we don't need the extra address range offered by v6!
+* Application software - Websites! As well as audio/video editing, VOIP (phones) etc. Uses HTTP or similar.
+
+Hardware
+--------
+
+Ethernet and its speed-improved versions going up to 40/100 Gigabit Ethernet. Network speeds have not increased at the same rate as PCs.
+
+Protocols
+---------
+
+Define rules for exchange of information between hosts. Deals with addressing, errors, managing packet sequences and flow control. TCP/IP(IPv4) is the current standard for the web. This is an open standard.
+
+Connections
+-----------
+
+* Datagrams - Ethernet, IP, ICMP, UDP - one-off, one-way communication. No acknowledgement of receipt.
+* Connections - TCP - Many messages back and forth between client and server to set up various parameters for the connection in a handshake type pattern. This is followed by the actual content of the message being sent followed by an acknowledgement from the server. The content will be resent until an acknowledgement is received. Finally there is an end connection handshake. This process can cause noticeable delay over long distances.
+
+TCP is good for the public web because it is more resistant to packet loss. However TCP can experience problems with latency and network issues. UDP has much less latency but is susceptible to packet loss. TCP is usually used for file transfers and UDP is more used for streaming.
+
+Unicast, Multicast and Broadcast
+--------------------------------
+
+* Unicast - client asks a question of a server, server replies. This is the majority of the web.
+* Multicast - one-to-many messages. Used for audio and video streaming. Listeners must register an interest in a service and routers will ensure only this traffic reaches the listener. This is done using hardware of course. Can be very efficient for large numbers of uses but is not fully supported by many ISPs in the UK! We currently have to use Unicast for streaming audio and video from iPlayer but this is not very scalable! More common within a single enterprises for IPRingmains and things since they have full control of the network.
+* Broadcasts - one-to-all messages. IP broadcasts are nearly always just on a LAN as obviously we don't want to broadcast to the wider web. Usually used for announcing machine IPs on LANs etc.
+
+Ip Addresses
+------------
+
+Clients on a server are usually assigned a temporary IP using DHCP. This is released when the client leaves the server. Important machines like databases etc however have static IP addresses.
+
+Machines on a LAN usually have private IP Addresses (beginning with 10 or 192). These then pass through a proxy and received a public IP address when talking to the wider web. Routers are designed to deny any machine with a private IP address attempting to reach the wider web.
+
+Many companies have bought up large ranges of IP addresses. IBM for example owns all addresses beginning with 9.
+
+OSI Seven Layer Model
+--------------------
+
+* Layer 1 - Physical - Defines various standards for wires like impedance, colour coding, maximum length etc. Used with Hubs (distribution amplifier for packages. No knowledge of addresses or good/bad packets etc.).
+
+* Layer 2 - Link - Local delivery within a building. Ethernet. Deals with addresses (MAC, not IP!) and packet structure. MAC addresses uniquely identifies specific bits of hardware. Used with Switches.
+
+* Layer 3 - Networking - Uses IPv4. Deals with IP addresses which are used for global communication. Used with routers.
+
+* Layer 4 - Transport - UDP or TCP. See Connections. Deals with TCP headers.
+
+We now have an ethernet packet that contains an IP packet that contains a TCP packet.
+
+* (Less important) Layer 5 - Session - built into TCP.
+
+* (Less important) Layer 6 - Presentation - What character sets or protocol translations being used.
+
+* Layer 7 - Applications - HTTP. The web! FTP, AOIP/VOIP, TELNET.

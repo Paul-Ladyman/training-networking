@@ -1,0 +1,56 @@
+Layer 2 - Ethernet
+==================
+
+Ethernet is older than IP!
+
+Ethernet uses a shared media access method, that means every body's data is on the same coaxial cable.
+A sender must listen before sending to ensure there's no activity that might collide with their own
+packets.
+
+Ethernet Frames
+---------------
+
+Packets are made up with a number of different frames containing different types of data.
+* Preamble
+* Destination MAC address
+* Source MAC Address
+* Data Type - Usually set to the value for IP packets!
+* Data - the actual content of the packet
+* Frame Check Sum - to detect errors in the packet. Interference causing data to be lost like mobile phone
+signals, mains glitches etc. If this occurs the packet is thrown away silently and the sender will retry.
+* InterPacketGap - a pause time to be adhered to before the next packet is sent. This applies a limit to
+send speeds!
+
+Ethernet (MAC) Addresses
+------------------
+
+6 byte address hard coded into the Network Interface Card.
+
+A special address is reserved for Broadcasts - FF-FF-FF-FF-FF-FF.
+
+NICs will listen to their own and the broadcast address. Other addresses will be ignored.
+Switches will also direct packets to addresses as appropriate. NICs can also respond to special
+multicast addresses. NICs can also be forced to listen to all addresses if desired (promiscuous mode)!
+
+Ethernet Cable Types
+-------------------
+
+Copper (electricity) or Fibre (light) for different distances and speeds. Fibre delivers the best speeds.
+1Gb/s is common for home use. 10Gb/s are now affordable for use with servers. 40Gb/s and 100Gb/s coming soon. Switches and NICs in the servers must match the specs of the network they're plugged into! Increased speeds are necessary as networks have moved from handling things like emails to files to video and audio.
+
+Copper wires come in the form of Unshielded Twisted Pairs (UTP) with RJ45 connectors. There are different categories of UTP; Cat5, Cat5e Cat6 with increasing speeds, noise performance etc. Shielded Twisted Pairs cables are available but are more expensive and can't span as far.
+
+Fibre cables can go for many kilometers at high speeds but are more expensive.
+
+Switched Ethernet
+-----------------
+
+Repeating hubs used to manage incoming and outgoing traffic for a building or floor.
+
+Repeating hubs are now obsolete, we now use switches. Switches can send and receive simultaneously and will route traffic to specific addresses only, rather than everyone seeing all packets. This means we can always pump data out no matter what other traffic is on the network.
+
+Switches keep track of what devices are plugged into which ports by monitoring the SourceAddress information in each ethernet packet.
+
+Looking at a network end-to-end there will be many switches and routers used to take packets over large distances. Fibre cables can be used to send packets over kilometers.
+
+Switches can be managed or unmanaged. Managed switches often come with web interfaces to allow configuration, monitoring etc.
