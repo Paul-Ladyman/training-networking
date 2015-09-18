@@ -43,7 +43,7 @@ Using routers and large ip address tables IP is a very resilient protocol. Route
 Routing Tables
 --------------
 
-Maintained by routers in order to identify the best way to get packets delivered to different networks. Public routing tables may contain half a million entries. Routing tables can be kept up to date automatically using OSPF and BGP.
+Maintained by routers in order to identify the best way to get packets delivered to different networks. Maps IP address ranges to router ports and unknown addresses to the default gateway, which is typically another router that may or may not recognise the address. The chain continues as such until the address is matched. Public routing tables may contain half a million entries. Routing tables can be kept up to date automatically using OSPF and BGP.
 
 DNS
 ---
