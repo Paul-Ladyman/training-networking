@@ -54,3 +54,14 @@ Switches keep track of what devices are plugged into which ports by monitoring t
 Looking at a network end-to-end there will be many switches and routers used to take packets over large distances. Fibre cables can be used to send packets over kilometers.
 
 Switches can be managed or unmanaged. Managed switches often come with web interfaces to allow configuration, monitoring etc.
+
+Its possible to connect many switches together for resiliency using technologies like Spanning Tree, with performance implications.
+
+A single larger switch can support multiple separate networks using Virtual LANs (VLAN).
+
+Switches can prioritise different types of traffic according to how important the are in terms of how much latency they can accept. Traffic is queued according to priority and higher priority queues get dealt with first.
+
+ARP
+----
+
+IP addresses get mapped to MAC addresses using the ARP protocol. IP devices regularly send an ARP broadcasts and maintain the IP-MAC map that it uses when sending IP traffic. This can be observed using Wireshark. This is a bit like DNS that maps between URLs and IP Addresses on layer 3. On a mac checkout `arp -a`.

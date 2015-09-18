@@ -1,0 +1,11 @@
+Layer 4 - Transfer Protocols
+===========================
+
+Two main protocols used today:
+
+* UDP - lightweight and fast but not delivery guarantees. Good for network queries and announcements - e.g. DNS and DHCP broadcasts. Often used for audio and video (VOIP, AOIP) streaming because its fast. In this case stability is compensated for by custom processes in layer 7 using RTP.
+* TCP - more complex but deals with packet loss, packet sequences, acknowledgements, etc. This is usually used by HTTP, FTP, POP3 and SMPT applications.
+
+Both protocols use port numbers to identify the specific server and client applications. This happens as granular as even the tab in Chrome that made the request, so that the response comes back on the same port it was sent from!
+
+Some ports are reserved for common purposes. I.e. port 80 is often for an Apache server.

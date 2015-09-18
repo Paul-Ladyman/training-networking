@@ -1,0 +1,62 @@
+Layer 3 - IP
+============
+
+Deals with addressing and routing of packets between machines and networks.
+
+IP is datagram! Best-effort delivery - no guarantees. Resilience is added by TCP at layer 4.
+
+IP is often used as a general term for networks. IP (and TCP, UDP) was written as an RFC in 1980 and was being developed since the 70s.
+
+IP abstracts the hardware and the details of ethernet. As such IP works well over a range of different hardware; ethernet, wifi, fibre, satellite etc.
+
+IP Addresses
+------------
+
+* IPv4 - 4 byte addresses in the format 132.185.121.23. Each section can have one of 256 values between 0 and 255. This gives over 4 billion unique addresses. This seemed like enough in the 80s but the world is now beginning to run out. If the Internet of Things takes off IPv4 will no longer be suitable.
+
+There are many centers across the world that manage the commissioning of IP addresses. The center for Europe is RIPE. RIPE can be used to find out who has a particular public ip address!
+
+* IPv6 - Uses a 16 byte address system which produces effectively infinite unique addresses. Changing from v4 to v6 may not be trivial however so it is still relatively rare. It is possible to tunnel IPv6 packets through IPv4 networks and visa versa. Some websites offer v4 and v6 addresses and clients can pick which ever they're able to use.
+
+IPv4
+-----
+
+LANs are given a block of IP addresses defined by a main IP address and a subnet mask. The most common set up is 192.168.1.0/24. The first part is the route ip address and the second is the subnet mask which defines how many individual addresses are in the network. Here the network has 32 - 24 = 8 bits of spare addresses = 256. This can also be expressed as 255.255.255.0.
+
+We use subnets to distinguish between local and remote destinations. The first address in the range is reserved for the remote address. Packets sent to this address will arrive at the router and be forwarding accordingly. Packets sent locally will use a specific IP address within the range. The last address in the subnet range is also reserved for broadcast packets.
+
+Some ip ranges were reserved in the original spec; public and private addresses for both unicast and multicast purposes. Private ip addresses are only unique within a particular network and get proxied to a public address by the router when making external requests. Public addresses are unique.
+
+Locally running services run on the static IP address 127.0.0.1.
+
+Being assigned 169.254.0.0/16 means a DHCP server could not be found.
+
+IP Routing
+----------
+
+IP packets can be sent from one LAN to another. A router is used for this. Each LAN uses a different router ip address and the router is able to direct requests to known LANs based on the beginning part of the ip address. Within the individual LAN the ARP protocol maps the ip address to a MAC address and a hardware switch directs the traffic.
+
+If the router does not know about an ip address the packet will be passed to the default gateway, typically another router. This will continue until the packet is passed to a routing machine for the wider web, like the ones for the whole of the UK, which is able to resolve public ip addresses.
+
+Using routers and large ip address tables IP is a very resilient protocol. Router software is complex and is very good at finding a path to the desired address even if the packet must be passed around the world to get there.
+
+Routing Tables
+--------------
+
+Maintained by routers in order to identify the best way to get packets delivered to different networks. Public routing tables may contain half a million entries. Routing tables can be kept up to date automatically using OSPF and BGP.
+
+DNS
+---
+
+Domain Name System is a distributed database system that converts URLs to ip addresses. DNS works worldwide and starts with a local DNS server, which if it does not know the URL, will forward you onto the next DNS server up. There are 12 large DNS servers around the world that know everything. These requests are cached to make future requests fast.
+
+DHCP
+----
+
+Dynamic Host Configuration Protocol automatically provides clients with IP addresses when they join the network. This includes:
+* IP Address
+* Subnet mask
+* Default Gateway (Local Router)
+* DNS Server
+
+This would have to be manually entered if not for the DHCP server. On more complex systems however this can break things if the ip address of an existing device is entered. This works on a lease period so the IP address will be given up after the lease.
